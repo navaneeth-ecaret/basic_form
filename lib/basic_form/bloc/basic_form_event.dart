@@ -1,7 +1,6 @@
 part of 'basic_form_bloc.dart';
 
-@immutable
-sealed class BasicFormEvent {}
+class BasicFormEvent {}
 
 class BasicFormSubmittedEvent extends BasicFormEvent {}
 

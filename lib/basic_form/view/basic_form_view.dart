@@ -1,4 +1,6 @@
+import 'package:basic_form/basic_form/bloc/basic_form_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BasicForm extends StatelessWidget {
   const BasicForm({super.key});
@@ -12,7 +14,8 @@ class BasicForm extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              onChanged: (value) => {},
+              onChanged: (value) =>
+                  context.read<BasicFormBloc>().add(EmailChanged(email: value)),
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderSide: BorderSide(width: 2.0)),
                 hintText: "email",
@@ -21,7 +24,9 @@ class BasicForm extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
-              onChanged: (value) => {},
+              onChanged: (value) => context.read<BasicFormBloc>().add(
+                PasswordChanged(password: value),
+              ),
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderSide: BorderSide(width: 2.0)),
                 hintText: "password",
@@ -29,7 +34,12 @@ class BasicForm extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: Text("Submit")),
+            ElevatedButton(
+              onPressed: () {
+                context.read<BasicFormBloc>().add(BasicFormSubmittedEvent());
+              },
+              child: Text("Submit"),
+            ),
           ],
         ),
       ),

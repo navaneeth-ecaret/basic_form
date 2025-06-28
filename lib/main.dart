@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(
-    BlocProvider(create: (context) => BasicFormBloc(), child: BasicForm()),
-  );
+  runApp(BlocProvider(create: (context) => BasicFormBloc(), child: App()));
 }
 
 class App extends StatelessWidget {
@@ -32,8 +30,10 @@ class App extends StatelessWidget {
         return MaterialApp(
           theme: ThemeData(colorScheme: lightdeafultColorScheme),
           darkTheme: ThemeData(colorScheme: darkDefaultColorScheme),
-          themeMode: ThemeMode.dark,
           home: BasicForm(),
+          debugShowMaterialGrid: false,
+          themeMode: ThemeMode.system,
+          debugShowCheckedModeBanner: false,
         );
       },
     );

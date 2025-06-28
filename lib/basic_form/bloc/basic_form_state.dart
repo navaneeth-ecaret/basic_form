@@ -1,17 +1,22 @@
 part of 'basic_form_bloc.dart';
 
-@immutable
-sealed class BasicFormState {}
+// basic_form_state.dart
+class BasicFormState {
+  final String email;
+  final String password;
+
+  BasicFormState({this.email = '', this.password = ''});
+
+  BasicFormState copyWith({String? email, String? password}) {
+    return BasicFormState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+    );
+  }
+}
 
 final class BasicFormInitial extends BasicFormState {}
 
 class BasicFormBuildState extends BasicFormState {}
 
 class BasicFormActionState extends BasicFormState {}
-
-class BasicFormSubmittedActionState extends BasicFormActionState {
-  final String email;
-  final String password;
-
-  BasicFormSubmittedActionState({required this.email, required this.password});
-}
